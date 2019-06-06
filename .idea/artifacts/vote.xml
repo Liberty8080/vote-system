@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="vote">
+    <output-path>$PROJECT_DIR$/out/artifacts/vote</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="vote-system-javabean" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="vote-system-javabean/web/Web" />
+    </root>
+  </artifact>
+</component>
