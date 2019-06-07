@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bootstrapTest</title>
+    <!--    <base href="http://localhost:8080/voteSystem/">-->
+    <!--  加载bootstrap  -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!--    背景图-->
+    <style type="text/css">
+        html, body {
+            width: 100%;
+            height: 100%
+        }
+
+        body {
+            background: url(image/vote-1804596.jpg) no-repeat top left;
+            background-size: cover;
+        }
+
+        #nav0 {
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light" id="nav0">
+    <a class="navbar-brand" href="#"><h1 style="font-family: KacstArt,fantasy">vote.com</h1></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="btn-group ml-auto" role="group">
+            <button type="button" class="btn btn-success " data-toggle="modal" data-target="#signin-modal">登录
+            </button>
+            <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#signup-modal">注册
+            </button>
+        </div>
+       <!-- <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+
+            </li>
+            <li>
+                <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#signup-modal">注册
+                </button>
+            </li>
+
+            <li>
+                <button type="button" class="btn btn-dark">管理员</button>
+            </li>
+
+
+        </ul>-->
+    </div>
+
+
+</nav>
+
+<div class="container">
+
+</div>
+
+<!--登录 modal弹出层-->
+
+
+<div class="modal fade m-auto " id="signin-modal" data-backdrop="false" tabindex="-1" role="dialog"
+     aria-labelledby="signin-modal"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header ">
+                <h5 class="modal-title text-center" style="text-align: center">登录</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!--
+                    普通用户登录表单
+                表单内容 表单名id userLoginForm
+                 用户名  name = username , id = username
+                           密码  name=userPassword id = password
+                -->
+                <form method="post" action="LoginCheck.jsp" role="form" id="userLoginForm">
+                    <div class="form-group">
+                        <label for="username">用户名</label>
+                        <div class="input-group">
+<!--                            用户名-->
+                            <input type="text" class="form-control" name="username" id="username"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">密码</label>
+<!--                        密码-->
+                        <input type="password" class="form-control" name="userPassword" id="password"/>
+                        <small class="ml-auto"><a href="" class="small">忘记密码?</a></small>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                        <input type="submit" class="btn btn-primary" id="usersubmit" data-dismiss="modal" value="登录"/>
+                    </div>
+                </form>
+            </div>
+
+
+            <div class="modal-footer">
+
+                <button type="submit" class="btn btn-primary" id="userLoginButton">登录</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--主页设置-->
+<!--注册 modal 弹出层-->
+<div class="modal fade m-auto" id="signup-modal" tabindex="-1" data-backdrop="false" role="dialog"
+     aria-labelledby="signup-modal"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center " style="text-align: center">注册</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!--注册表单-->
+                <form method="post" action="" role="form">
+                    <div class="form-group">
+                        <label for="signup-username">用户名</label>
+                        <span class="error"></span>
+                        <input type="text" class="form-control" id="signup-username" name="username"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-password">密码</label>
+                        <input type="password" class="form-control" id="signup-password" name="password"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm-password">确认密码</label>
+                        <input type="password" class="form-control" id="confirm-password" name="confirm-password"/>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary">注册</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="js/login.js"></script>
+</body>
+</html>
