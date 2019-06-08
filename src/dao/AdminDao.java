@@ -16,7 +16,7 @@ public class AdminDao {
     public boolean login2(Admin admin) throws SQLException {
         boolean succeed = false;
         Connection conn = db.getConn();
-        String sql = "select * from user where id = '1'";
+        String sql = "select * from admin where id = '1'";
         PreparedStatement ps = conn.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
         rs.next();
@@ -29,24 +29,7 @@ public class AdminDao {
         return succeed;
     }
 
-    public int addUser(User user) {
-        String sql = "insert into user(name,password) values(?,?)";
-        return db.executeSQL(sql, user.getName(), user.getPassword());
-    }
 
-    //删除用户
-
-    public int deleteUser(User user) {
-        String sql = "delete from user where name = ? and id = ?";
-        return db.executeSQL(sql, user.getName(), user.getId());
-    }
-
-    //修改用户信息
-
-    public int updateUser(User user) {
-        String sql = "update user set name=? where id = ?";
-        return db.executeSQL(sql, user.getName(), user.getId());
-    }
 
 
 }

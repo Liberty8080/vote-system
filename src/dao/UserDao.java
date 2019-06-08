@@ -1,10 +1,6 @@
 package dao;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-
-import com.sun.org.glassfish.gmbal.Description;
 import util.*;
 import model.*;
 
@@ -30,11 +26,26 @@ public class UserDao {
         return succeed;
     }
 
-
-
-    public void updateVote(VoteTheme vote){
-//        String sql =
+    public int addUser(User user) {
+        String sql = "insert into user(name,password) values(?,?)";
+        return db.executeSQL(sql, user.getName(), user.getPassword());
     }
+
+    //删除用户
+
+    public int deleteUser(User user) {
+        String sql = "delete from user where name = ? and id = ?";
+        return db.executeSQL(sql, user.getName(), user.getId());
+    }
+
+    //修改用户信息
+
+    public int updateUser(User user) {
+        String sql = "update user set name=? where id = ?";
+        return db.executeSQL(sql, user.getName(), user.getId());
+    }
+
+
 
 
 

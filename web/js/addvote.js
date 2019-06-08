@@ -1,0 +1,3 @@
+function addvote(){
+$("#addvoteForm").submit();
+}
