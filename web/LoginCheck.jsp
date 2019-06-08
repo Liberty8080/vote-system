@@ -19,7 +19,7 @@
         boolean succeed = userCheck.login(username, userPassword);
         if (succeed) {
             System.out.println("登陆成功");
-            response.sendRedirect("./voteView.html");
+            response.sendRedirect("./VoteView.jsp");
         } else{
             System.out.println("登录失败");
             //登录失败跳主页

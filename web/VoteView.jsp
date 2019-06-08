@@ -1,3 +1,15 @@
+<%@ page import="java.util.List" %>
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="model.VoteTheme" %><%--
+  Created by IntelliJ IDEA.
+  User: jacob
+  Date: 6/8/19
+  Time: 2:27 PM
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<jsp:useBean id="voteDao" class="dao.VoteDao" scope="session"/>
+<jsp:useBean id="vote" class="model.VoteTheme" scope="session"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,83 +62,29 @@
     </div>
 </nav>
 
-<!--主视图-->
 <div class="container">
     <div class="row">
-        <div class="col-sm-4">
-            <div class="card">
-                <img class="card-img-top" src="image/cyberpunk.jpg" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title text-center">你喜欢哪个壁纸?</h5>
-                    <p class="card-text">什么风格</p>
-                    <a href="#" class="btn btn-primary votebtn">点击投票</a>
-                </div>
-            </div>
-        </div><!--end of col-->
-        <div class="col-sm-4">
-            <div class="card">
-                <img class="card-img-top" src="image/cyberpunk.jpg" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title text-center">你喜欢哪个壁纸?</h5>
-                    <p class="card-text">什么风格</p>
-                    <a href="#" class="btn btn-primary votebtn">点击投票</a>
-                </div>
-            </div>
-        </div><!--end of col-->
-        <div class="col-sm-4">
-            <div class="card">
-                <img class="card-img-top" src="image/cyberpunk.jpg" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title text-center">你喜欢哪个壁纸?</h5>
-                    <p class="card-text">什么风格</p>
-                    <a href="#" class="btn btn-primary votebtn">点击投票</a>
-                </div>
-            </div>
-        </div><!--end of col-->
-        <div class="col-sm-4">
-            <div class="card">
-                <img class="card-img-top" src="image/cyberpunk.jpg" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title text-center">你喜欢哪个壁纸?</h5>
-                    <p class="card-text">什么风格</p>
-                    <a href="#" class="btn btn-primary votebtn">点击投票</a>
-                </div>
-            </div>
-        </div><!--end of col-->
-        <div class="col-sm-4">
-            <div class="card">
-                <img class="card-img-top" src="image/cyberpunk.jpg" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title text-center">你喜欢哪个壁纸?</h5>
-                    <p class="card-text">什么风格</p>
-                    <a href="#" class="btn btn-primary votebtn">点击投票</a>
-                </div>
-            </div>
-        </div><!--end of col-->
-        <div class="col-sm-4">
-            <div class="card">
-                <img class="card-img-top" src="image/cyberpunk.jpg" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title text-center">你喜欢哪个壁纸?</h5>
-                    <p class="card-text">什么风格</p>
-                    <a href="#" class="btn btn-primary votebtn">点击投票</a>
-                </div>
-            </div>
-        </div><!--end of col-->
-        <div class="col-sm-4">
-            <div class="card">
-                <img class="card-img-top" src="image/cyberpunk.jpg" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title text-center">你喜欢哪个壁纸?</h5>
-                    <p class="card-text">什么风格</p>
-                    <a href="#" class="btn btn-primary votebtn">点击投票</a>
-                </div>
-            </div>
-        </div><!--end of col-->
+        <%
+            try {
+                List<VoteTheme> votes = voteDao.findAllVote();
+                for (VoteTheme v : votes) {
+                    out.print("<div class='col-sm-4'>\n" +
+                            "<div class='card'>\n" +
+                            "<img class='card-img-top' src='image/cyberpunk.jpg' alt='Card image cap'>\n" +
+                            "<div class='card-body'>");
+                    out.print("<h5 class='card-title text-center'>"+v.getTheme()+"</h5>\n");
+                    out.print("<p class=\"card-text\">"+v.getInfo()+"</p>\n");
+                    out.print("<a href=\"#\" class=\"btn btn-primary votebtn\">点击投票</a>\n");
+                    out.print("</div></div></div>");
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        %>
+    </div>
+</div>
+<!--主视图-->
 
-
-    </div> <!--end of div.row-->
-</div><!--end of contain -->
 
 
 <!--
@@ -177,9 +135,9 @@
                         <textarea id="voteInfo" class="form-control" name="voteInfo"></textarea>
                     </div>
                     <div class="form-group " style="float: right;">
-                        <button type="button" class="btn btn-secondary mr-auto" data-dismiss="modal" >取消</button>
+                        <button type="button" class="btn btn-secondary mr-auto" data-dismiss="modal">取消</button>
                         <input type="submit" class="btn btn-primary mr-auto" id="votesubmit" data-dismiss="modal"
-                               value="提交" onclick="addvote()" />
+                               value="提交" onclick="addvote()"/>
 
                     </div>
                 </form>

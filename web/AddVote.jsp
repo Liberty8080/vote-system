@@ -34,6 +34,6 @@
         Integer value = options.get(key);
         System.out.println(key + ":" + value);
     }
-    response.sendRedirect("voteView.html");
+    response.sendRedirect("VoteView.jsp");
 %>
 

@@ -38,6 +38,12 @@ public class test {
             System.out.println(key + ":" + value);
         }
     }
+
+    @Test
+    public void testFindAllVote() throws SQLException {
+        VoteDao vd = new VoteDao();
+        vd.findAllVote();
+    }
     }
 
 

@@ -110,7 +110,28 @@ public class VoteDao {
             System.out.println(votetheme.getId());
             votetheme.setOptions(findOptions(votetheme.getId()));
         }
+        rs.close();
+        ps.close();
+        conn.close();
         return votetheme;
+    }
+
+
+    public List<VoteTheme> findAllVote() throws SQLException {
+        List<VoteTheme> voteThemes = new ArrayList<>();
+        String sql = "select * from voteTheme";
+        Connection conn = db.getConn();
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        while(rs.next()){
+            VoteTheme votetheme = new VoteTheme();
+            votetheme.setId(rs.getInt("id"));
+            votetheme.setInfo(rs.getString("info"));
+            votetheme.setTheme(rs.getString("theme"));
+            votetheme.setOptions(findOptions(votetheme.getId()));
+            voteThemes.add(votetheme);
+        }
+        return voteThemes;
     }
 
     /**
