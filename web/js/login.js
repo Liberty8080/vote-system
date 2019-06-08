@@ -1,5 +1,4 @@
 function loginCheck() {
-    alert("test");
+    $("#userLoginForm").submit();
 }
-$("#")
-$(document).ready(loginCheck());
+//两个表单,jquery方式提交表单.
