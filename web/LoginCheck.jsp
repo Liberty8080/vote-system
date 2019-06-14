@@ -11,14 +11,9 @@
 <%
     String username = request.getParameter("username");
     String userPassword = request.getParameter("userPassword");
-    System.out.println(username);
-    System.out.println(userPassword);
-    //加一个判断,普通用户及管理员
-
     try {
         boolean succeed = userCheck.login(username, userPassword);
         if (succeed) {
-            System.out.println("登陆成功");
             response.sendRedirect("./VoteView.jsp");
         } else{
             System.out.println("登录失败");

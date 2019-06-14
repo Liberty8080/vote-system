@@ -51,7 +51,7 @@ public class VoteDao {
      * @return java.util.Map<java.lang.String,java.lang.Integer>
      **/
     private Map<String,Integer> findOptions(int id) throws SQLException{
-        Map<String,Integer> options = new HashMap<>(4);
+        Map<String,Integer> options = new LinkedHashMap<>(4);
         String sql = "select * from voteOptions where themeID = ?";
         Connection conn = db.getConn();
         PreparedStatement ps = conn.prepareStatement(sql);
@@ -116,6 +116,25 @@ public class VoteDao {
         return votetheme;
     }
 
+    public VoteTheme findVoteById(int id) throws SQLException {
+        String sql = "select * from voteTheme where id = ?";
+        VoteTheme votetheme = new VoteTheme();
+        Connection conn = db.getConn();
+
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setInt(1, id);
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            votetheme.setId(rs.getInt("id"));
+            votetheme.setTheme(rs.getString("theme"));
+            votetheme.setInfo(rs.getString("info"));
+            votetheme.setOptions(findOptions(votetheme.getId()));
+        }
+        rs.close();
+        ps.close();
+        conn.close();
+        return votetheme;
+    }
 
     public List<VoteTheme> findAllVote() throws SQLException {
         List<VoteTheme> voteThemes = new ArrayList<>();
@@ -131,6 +150,9 @@ public class VoteDao {
             votetheme.setOptions(findOptions(votetheme.getId()));
             voteThemes.add(votetheme);
         }
+        rs.close();
+        ps.close();
+        conn.close();
         return voteThemes;
     }
 
@@ -140,5 +162,10 @@ public class VoteDao {
      **/
     public void updateVote(){
 
+    }
+
+    public void addCount(int themeid,String option,int count){
+        String sql = "update voteOptions set count = ? where voteItem = ? and themeID = ?";
+        db.executeSQL(sql,count,option,themeid);
     }
 }

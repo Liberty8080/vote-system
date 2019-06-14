@@ -51,6 +51,14 @@
             padding-top: 5px;
             padding-bottom: 5px;
         }
+        .footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            /* Set the fixed height of the footer here */
+            height: 50px;
+            background-color: #f5f5f5;
+        }
 
     </style>
 </head>
@@ -73,8 +81,8 @@
                             "<img class='card-img-top' src='image/cyberpunk.jpg' alt='Card image cap'>\n" +
                             "<div class='card-body'>");
                     out.print("<h5 class='card-title text-center'>"+v.getTheme()+"</h5>\n");
-                    out.print("<p class=\"card-text\">"+v.getInfo()+"</p>\n");
-                    out.print("<a href=\"#\" class=\"btn btn-primary votebtn\">点击投票</a>\n");
+                    out.print("<p class='card-text'>"+v.getInfo()+"</p>\n");
+                    out.print("<a href='makeVote.jsp?tid="+v.getId()+"' class='btn btn-primary votebtn'>点击投票</a>\n");
                     out.print("</div></div></div>");
                 }
             } catch (SQLException e) {
@@ -147,11 +155,16 @@
     </div>
 </div>
 
+
+<footer class="navbar navbar-dark  bg-dark navbar-fixed-bottom ">
+    <div class="navbar-nav">
+        @copyright 老赵
+    </div>
+</footer>
 <script src="js/addvote.js"></script>
 <script type="text/javascript">
     $(".votebtn").click(
         function () {
-            alert("你点击了");
         }
     );
 </script>

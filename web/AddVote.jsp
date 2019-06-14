@@ -1,7 +1,8 @@
 <%@ page import="java.util.Map" %>
 <%@ page import="java.util.HashMap" %>
 <%@ page import="java.util.Set" %>
-<%@ page import="java.sql.SQLException" %><%--
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="java.util.LinkedHashMap" %><%--
   Created by IntelliJ IDEA.
   User: jacob
   Date: 6/8/19
@@ -14,7 +15,7 @@
 <%
    String theme =  request.getParameter("voteTheme");
    String info = request.getParameter("voteInfo");
-    Map<String,Integer> options = new HashMap<>();
+    Map<String,Integer> options = new LinkedHashMap<>();
     options.put(request.getParameter("voteOption1"),0);
     options.put(request.getParameter("voteOption2"),0);
     options.put(request.getParameter("voteOption3"),0);
@@ -28,11 +29,9 @@
     } catch (SQLException e) {
         e.printStackTrace();
     }
-    System.out.println(vote.getTheme()+vote.getInfo());
     Set<String> set=options.keySet();
     for (String key : set) {
         Integer value = options.get(key);
-        System.out.println(key + ":" + value);
     }
     response.sendRedirect("VoteView.jsp");
 %>

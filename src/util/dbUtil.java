@@ -66,11 +66,6 @@ public class dbUtil {
                 ps.setObject(i + 1, args[i]);
             }
             rows = ps.executeUpdate();
-            if (rows > 0) {
-                System.out.println("operate successfully !");
-            } else {
-                System.out.println("fail!");
-            }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
