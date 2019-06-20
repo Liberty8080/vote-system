@@ -2,8 +2,13 @@
   <dictionary name="jacob">
     <words>
       <w>addvote</w>
+      <w>editid</w>
+      <w>editname</w>
+      <w>editpassword</w>
       <w>navbar</w>
+      <w>newid</w>
       <w>toggler</w>
+      <w>userid</w>
       <w>votebtn</w>
       <w>votesubmit</w>
     </words>
