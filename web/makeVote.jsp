@@ -40,8 +40,10 @@
 
             <%
                 int id = Integer.parseInt(request.getParameter("tid"));
-                List<String> xAxis = new ArrayList<>();
-                List<Integer> yAxis = new ArrayList<>();
+                List<String> xAxis = new LinkedList<>();
+                List<Integer> yAxis = new LinkedList<>();
+//                String x = null;
+//                String y = null;
                 Map<String, Integer> options;
                 Set<String> set;
                 try {
@@ -56,8 +58,11 @@
                     out.print("<p class='card-text'>" + v.getInfo() + "</p>\n");
                     out.print("<form action='#' method='post' id='makeVoteForm'>\n");
                     for (String option : set) {
-                        xAxis.add(option);
+                        xAxis.add("'"+option+"'");
                         yAxis.add(options.get(option));
+                        for(String temp:xAxis){
+
+                        }
                         out.print("  <div class=\"form-check\">\n" +
                                 "            <input class='form-check-input' type='radio' name='voteOptions' id='" + option + "'  value=" + options.get(option) + " >\n" +
                                 "            <label class=\"form-check-label\" for='" + option + "'>\n" +
@@ -71,7 +76,6 @@
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
-                System.out.println(Arrays.toString(xAxis.toArray()));
             %>
 
 

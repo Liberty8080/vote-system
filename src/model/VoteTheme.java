@@ -1,6 +1,5 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +11,17 @@ public class VoteTheme {
     private String theme;
     private String info;
     private Map<String,Integer> options;
+    private int censor;
+    private List<VoteOption> allOptions;
+
+    public int getCensor() {
+        return censor;
+    }
+
+    public void setCensor(int censor) {
+        this.censor = censor;
+    }
+
 
     public int getId() {
         return id;
@@ -43,5 +53,13 @@ public class VoteTheme {
 
     public void setOptions(Map<String,Integer> options) {
         this.options = options;
+    }
+
+    public List<VoteOption> getAllOptions() {
+        return allOptions;
+    }
+
+    public void setAllOptions(List<VoteOption> allOptions) {
+        this.allOptions = allOptions;
     }
 }

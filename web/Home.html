@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <title>bootstrapTest</title>
     <!--    <base href="http://localhost:8080/voteSystem/">-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <!--  加载bootstrap  -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -97,7 +107,7 @@
                         <label for="password">密码</label>
 <!--                        密码-->
                         <input type="password" class="form-control" name="userPassword" id="password"/>
-                        <small class="ml-auto"><a href="" class="small">忘记密码?</a></small>
+<!--                        <small class="ml-auto"><a href="" class="small">忘记密码?</a></small>-->
                     </div>
                     <div class="custom-control custom-checkbox">
                         <input type="checkbox" class="custom-control-input" id="defaultUnchecked" value="admin" name="admin">
@@ -152,21 +162,19 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary">注册</button>
+                <button type="button" class="btn btn-primary" onclick="adduser()">注册</button>
             </div>
         </div>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
 <script src="js/login.js"></script>
+<script >
+    function adduser() {
+        var username = $("#signup-username").val();
+        var password = $("#signup-password").val();
+        $(window).attr('location','addUser.jsp?username='+username+'&password='+password+'&flag=login');
+    }
+</script>
 </body>
 </html>

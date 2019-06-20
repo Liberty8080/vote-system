@@ -1,12 +1,16 @@
 <component name="ProjectDictionaryState">
   <dictionary name="jacob">
     <words>
+      <w>adduser</w>
       <w>addvote</w>
+      <w>boostrap</w>
       <w>editid</w>
       <w>editname</w>
       <w>editpassword</w>
+      <w>managevote</w>
       <w>navbar</w>
       <w>newid</w>
+      <w>signup</w>
       <w>toggler</w>
       <w>userid</w>
       <w>votebtn</w>

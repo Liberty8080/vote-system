@@ -1,7 +1,8 @@
 <%@ page import="model.User" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.sql.SQLException" %>
-<%@ page import="java.util.ArrayList" %><%--
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="model.VoteTheme" %><%--
   Created by IntelliJ IDEA.
   User: jacob
   Date: 6/20/19
@@ -46,6 +47,7 @@
     </style>
 </head>
 <body>
+<%--导航栏--%>
 <nav class="navbar navbar-dark bg-dark" id="nav0">
 
     <div class="navbar-header">
@@ -107,7 +109,61 @@
             </div>
 
             <%--    投票管理标签栏--%>
-            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
+            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>主题</th>
+                        <th>说明</th>
+                        <th>审核状态</th>
+                        <th>操作</th>
+                    </tr>
+
+                    </thead>
+                    <tbody>
+                    <%
+                        List<VoteTheme> voteThemes;
+                        int censor;
+                        try {
+                            voteThemes = vd.findAllVote();
+                            for (VoteTheme v : voteThemes) {
+
+
+                                out.println("<tr>");
+                                out.println("<td>" + v.getId() + "</td>");
+                                out.println("<td>" + v.getTheme() + "</td>");
+                                out.println("<td>" + v.getInfo() + "</td>");
+                                //判断是否审核
+                                censor = v.getCensor();
+                                switch (censor) {
+                                    case -1:
+                                        out.println("<td>未通过审核</td>");
+                                        break;
+                                    case 0:
+                                        out.println("<td>未审核</td>");
+                                        break;
+                                    case 1:
+                                        out.println("<td>已通过审核</td>");
+                                        break;
+                                }
+                                out.println("<td>");
+                                out.println("                    <div class=\"btn-group btn-group-sm\" role=\"group\" aria-label=\"Basic example\">\n" +
+                                        "                        <button type=\"button\" class=\"btn btn-outline-success\" onclick='censor("+v.getId()+")'>审核</button>\n" +
+                                        "                        <button type=\"button\" class=\"btn btn-outline-info\" onclick=\"manageVote(" + v.getId() + ")\">修改</button>\n" +
+                                        "                        <button type=\"button\" class=\"btn btn-outline-danger\"onclick=\"delVote(" + v.getId() + ")\">删除</button>\n" +
+                                        "                    </div>");
+                                out.println("</td>");
+                                out.println("</tr>");
+                            }
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+
+                    %>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </nav>
 </div>
@@ -131,7 +187,7 @@
                 <form action="addUser.jsp">
                     <div class="form-group">
                         <label for="exampleInputEmail1">用户名</label>
-                        <input type="text" name="id" class="form-control" id="exampleInputEmail1"
+                        <input type="text" name="username" class="form-control" id="exampleInputEmail1"
                                aria-describedby="emailHelp" placeholder="请输入用户名">
                         <small id="emailHelp" class="form-text text-muted">使用用户名作为登录账号</small>
                     </div>
@@ -176,7 +232,8 @@
                     </div>
                     <div class="form-group">
                         <label for="editname">用户名</label>
-                        <input type="text" name="username" class="form-control" id="editname" aria-describedby="emailHelp"
+                        <input type="text" name="username" class="form-control" id="editname"
+                               aria-describedby="emailHelp"
                                placeholder="请输入用户名">
                         <small id="editHelp" class="form-text text-muted">使用用户名作为登录账号</small>
                     </div>
@@ -197,9 +254,21 @@
         </div>
     </div>
 </div>
+
+<%--审核模态框--%>
+
+
 <script>
     function delUser(id) {
         window.location.href = "deleteUser.jsp?id=" + id;
+    }
+
+    function delVote(id) {
+        $(window).attr('location', 'deleteVote.jsp?id=' + id);
+    }
+
+    function manageVote(id) {
+        $(window).attr('location', 'managevote.jsp?tid=' + id);
     }
 
     // $("#edit-user-modal").modal('hide');
@@ -208,6 +277,9 @@
         $("#editid").attr('placeholder', param.id);
         $("#editname").attr('placeholder', param.name);
         $("#editpassword").attr('placeholder', param.password);
+    }
+    function censor(id) {
+        $(window).attr('location', 'censor.jsp?tid=' + id);
     }
 </script>
 

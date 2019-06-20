@@ -9,9 +9,13 @@
 <jsp:useBean id="ud" class="dao.UserDao" scope="session"/>
 
 <%
-    String name = request.getParameter("id");
+    String name = request.getParameter("username");
     String password = request.getParameter("password");
     int i = ud.addUser(name,password);
+if(request.getParameter("flag")!=null){
+    response.sendRedirect("VoteView.jsp");
+}else {
     response.sendRedirect("manage.jsp");
 
+}
 %>
