@@ -59,6 +59,15 @@
             height: 50px;
             background-color: #f5f5f5;
         }
+        .line-limit-length {
+
+            overflow: hidden;
+
+            text-overflow: ellipsis;
+
+            white-space: nowrap; //文本不换行，这样超出一行的部分被截取，显示...
+
+        }
 
     </style>
 </head>
@@ -81,7 +90,7 @@
                             "<img class='card-img-top' src='image/cyberpunk.jpg' alt='Card image cap'>\n" +
                             "<div class='card-body'>");
                     out.print("<h5 class='card-title text-center'>"+v.getTheme()+"</h5>\n");
-                    out.print("<p class='card-text'>"+v.getInfo()+"</p>\n");
+                    out.print("<p class='card-text line-limit-length'>"+v.getInfo()+"</p>\n");
                     out.print("<a href='makeVote.jsp?tid="+v.getId()+"' class='btn btn-primary votebtn'>点击投票</a>\n");
                     out.print("</div></div></div>");
                 }
@@ -140,7 +149,7 @@
                     </div>
                     <div class="form-group">
                         <label for="voteInfo">投票内容</label>
-                        <textarea id="voteInfo" class="form-control" name="voteInfo"></textarea>
+                        <textarea id="voteInfo" class="form-control" name="voteInfo">如题</textarea>
                     </div>
                     <div class="form-group " style="float: right;">
                         <button type="button" class="btn btn-secondary mr-auto" data-dismiss="modal">取消</button>

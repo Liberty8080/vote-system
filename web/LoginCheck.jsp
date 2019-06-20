@@ -16,7 +16,7 @@
         //若是管理员
         if(ad!=null){
            if(AdminCheck.login(username,userPassword)){
-               response.sendRedirect("VoteView.jsp");
+               response.sendRedirect("manage.jsp");
                session.setAttribute("type","admin");
            }else {
                response.sendRedirect("login.jsp");
