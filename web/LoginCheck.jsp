@@ -11,16 +11,28 @@
 <%
     String username = request.getParameter("username");
     String userPassword = request.getParameter("userPassword");
+    String ad = request.getParameter("admin");
     try {
-        boolean succeed = userCheck.login(username, userPassword);
-        if (succeed) {
-            response.sendRedirect("./VoteView.jsp");
-        } else{
-            System.out.println("登录失败");
-            //登录失败跳主页
-            response.sendRedirect("login.jsp");
+        //若是管理员
+        if(ad!=null){
+           if(AdminCheck.login(username,userPassword)){
+               response.sendRedirect("VoteView.jsp");
+               session.setAttribute("type","admin");
+           }else {
+               response.sendRedirect("login.jsp");
+           }
+           //若是普通用户
+        }else {
+            if (userCheck.login(username,userPassword)){
+                response.sendRedirect("VoteView.jsp");
+                session.setAttribute("type","user");
+            }else {
+                response.sendRedirect("login.jsp");
+            }
         }
     } catch (SQLException e) {
         e.printStackTrace();
     }
+
+
 %>

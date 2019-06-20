@@ -13,20 +13,14 @@ public class AdminDao {
     private dbUtil db = new dbUtil();
 
 
-    public boolean login2(Admin admin) throws SQLException {
-        boolean succeed = false;
+    public boolean login(String username,String password) throws SQLException {
         Connection conn = db.getConn();
-        String sql = "select * from admin where id = '1'";
+        String sql = "select * from admin where name=? and password=?";
         PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setString(1,username);
+        ps.setString(2,password);
         ResultSet rs = ps.executeQuery();
-        rs.next();
-        String adminName = rs.getString("name");
-        String password = rs.getString("password");
-        if (adminName.equals(admin.getName()) & password.equals(admin.getPassword())) {
-            succeed = true;
-        }
-        db.close(rs, ps, conn);
-        return succeed;
+       return rs.next();
     }
 
 

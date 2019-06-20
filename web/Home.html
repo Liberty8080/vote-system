@@ -99,10 +99,15 @@
                         <input type="password" class="form-control" name="userPassword" id="password"/>
                         <small class="ml-auto"><a href="" class="small">忘记密码?</a></small>
                     </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="defaultUnchecked" value="admin" name="admin">
+                        <label class="custom-control-label" for="defaultUnchecked">管理员</label>
+                    </div>
                     <div class="form-group">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
                         <input type="submit" class="btn btn-primary" id="usersubmit" data-dismiss="modal" value="登录" onclick="loginCheck()"/>
                     </div>
+
                 </form>
             </div>
 

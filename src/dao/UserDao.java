@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.*;
+
 import util.*;
 import model.*;
 
@@ -10,6 +11,11 @@ import model.*;
 public class UserDao {
     private dbUtil db = new dbUtil();
 
+    /**
+     * @Description 用户登录
+     * @Param [username, password]
+     * @return boolean
+     **/
     public boolean login(String username, String password) throws SQLException {
         boolean succeed = false;
         Connection conn = db.getConn();
@@ -26,27 +32,37 @@ public class UserDao {
         return succeed;
     }
 
+    /**
+     * @Description 新建项目
+     * @Param [user]
+     * @return int
+     **/
     public int addUser(User user) {
         String sql = "insert into user(name,password) values(?,?)";
         return db.executeSQL(sql, user.getName(), user.getPassword());
     }
 
-    //删除用户
 
-    public int deleteUser(User user) {
-        String sql = "delete from user where name = ? and id = ?";
-        return db.executeSQL(sql, user.getName(), user.getId());
+    /**
+     * @return int 删除用户
+     * @Description
+     * @Param [userName]
+     **/
+    public int deleteUser(String userName) {
+        String sql = "delete from user where name = ? ";
+        return db.executeSQL(sql, userName);
     }
 
-    //修改用户信息
 
+    /**
+     * @Description 修改用户信息
+     * @Param [user]
+     * @return int
+     **/
     public int updateUser(User user) {
-        String sql = "update user set name=? where id = ?";
-        return db.executeSQL(sql, user.getName(), user.getId());
+        String sql = "update user set name=? ,password=? where id = ?";
+        return db.executeSQL(sql, user.getName(),user.getPassword(), user.getId());
     }
-
-
-
 
 
 }

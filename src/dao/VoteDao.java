@@ -91,7 +91,7 @@ public class VoteDao {
     }
 
     /**
-     * @Description  查询vote
+     * @Description  通过主题查询投票
      * @Param []
      * @return void
      **/
@@ -116,6 +116,12 @@ public class VoteDao {
         return votetheme;
     }
 
+
+    /**
+     * @Description 通过id查询投票
+     * @Param [id]
+     * @return model.VoteTheme
+     **/
     public VoteTheme findVoteById(int id) throws SQLException {
         String sql = "select * from voteTheme where id = ?";
         VoteTheme votetheme = new VoteTheme();
@@ -136,6 +142,12 @@ public class VoteDao {
         return votetheme;
     }
 
+
+    /**
+     * @Description 查询现有所有投票
+     * @Param []
+     * @return java.util.List<model.VoteTheme>
+     **/
     public List<VoteTheme> findAllVote() throws SQLException {
         List<VoteTheme> voteThemes = new ArrayList<>();
         String sql = "select * from voteTheme";
@@ -164,6 +176,11 @@ public class VoteDao {
 
     }
 
+    /**
+     * @Description 增加投票数
+     * @Param [themeid, option, count]
+     * @return void
+     **/
     public void addCount(int themeid,String option,int count){
         String sql = "update voteOptions set count = ? where voteItem = ? and themeID = ?";
         db.executeSQL(sql,count,option,themeid);
