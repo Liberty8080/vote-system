@@ -84,15 +84,18 @@
         <%
             try {
                 List<VoteTheme> votes = voteDao.findAllVote();
+
                 for (VoteTheme v : votes) {
-                    out.print("<div class='col-sm-4'>\n" +
-                            "<div class='card'>\n" +
-                            "<img class='card-img-top' src='image/cyberpunk.jpg' alt='Card image cap'>\n" +
-                            "<div class='card-body'>");
-                    out.print("<h5 class='card-title text-center'>"+v.getTheme()+"</h5>\n");
-                    out.print("<p class='card-text line-limit-length'>"+v.getInfo()+"</p>\n");
-                    out.print("<a href='makeVote.jsp?tid="+v.getId()+"' class='btn btn-primary votebtn'>点击投票</a>\n");
-                    out.print("</div></div></div>");
+                    if(v.getCensor()==1) {
+                        out.print("<div class='col-sm-4'>\n" +
+                                "<div class='card'>\n" +
+                                "<img class='card-img-top' src='image/cyberpunk.jpg' alt='Card image cap'>\n" +
+                                "<div class='card-body'>");
+                        out.print("<h5 class='card-title text-center'>" + v.getTheme() + "</h5>\n");
+                        out.print("<p class='card-text line-limit-length'>" + v.getInfo() + "</p>\n");
+                        out.print("<a href='makeVote.jsp?tid=" + v.getId() + "' class='btn btn-primary votebtn'>点击投票</a>\n");
+                        out.print("</div></div></div>");
+                    }
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -163,11 +166,14 @@
         </div>
     </div>
 </div>
+<p>
+    <br>
+    <br>
+</p>
 
-
-<footer class="navbar navbar-dark  bg-dark navbar-fixed-bottom ">
-    <div class="navbar-nav">
-        @copyright 老赵
+<footer class="navbar navbar-dark  bg-dark fixed-bottom ">
+    <div class="navbar-nav ">
+        <font style="color: white">@copyright 老赵</font>
     </div>
 </footer>
 <script src="js/addvote.js"></script>
